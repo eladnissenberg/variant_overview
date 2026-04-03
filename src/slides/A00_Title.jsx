@@ -19,7 +19,7 @@ export default function A00_Title() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: EASING, delay: 0.2 }}
-        className="text-7xl md:text-8xl lg:text-9xl font-semibold text-white tracking-tight"
+        className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-semibold text-white tracking-tight"
       >
         Variant
       </motion.h1>

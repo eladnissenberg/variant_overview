@@ -58,13 +58,13 @@ function AnimatedMetric({ target, suffix, delay }) {
 export default function A_Performance() {
   return (
     <div className="w-full h-full relative flex flex-col">
-      <span className="absolute top-8 right-10 text-base font-semibold tracking-tight text-white/20 z-20">Variant</span>
-      <div className="flex-1 flex flex-col items-center justify-center px-20">
+      <span className="hidden md:block absolute md:top-8 md:right-10 text-base font-semibold tracking-tight text-white/20 z-20">Variant</span>
+      <div className="flex-1 flex flex-col items-center justify-center px-6 md:px-20">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: EASING, delay: 0.1 }}
-        className="text-4xl lg:text-5xl font-semibold text-white leading-tight text-center mb-24"
+        className="text-2xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight text-center mb-10 md:mb-24"
       >
         Brands using Variant see{' '}
         <span className="font-instrument italic font-normal tracking-normal text-lavender">
@@ -72,7 +72,7 @@ export default function A_Performance() {
         </span>
       </motion.h2>
 
-      <div className="flex items-start justify-center w-full max-w-5xl">
+      <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center gap-8 sm:gap-0 w-full max-w-5xl">
         {metrics.map((m, i) => (
           <motion.div
             key={m.label}
@@ -82,7 +82,7 @@ export default function A_Performance() {
             className="flex-1 flex flex-col items-center text-center"
           >
             <div
-              className="text-8xl lg:text-9xl font-extrabold tabular-nums tracking-tighter"
+              className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold tabular-nums tracking-tighter"
               style={{
                 background: 'linear-gradient(180deg, rgba(255,255,255,1) 30%, rgba(255,255,255,0.4) 100%)',
                 WebkitBackgroundClip: 'text',
@@ -92,7 +92,7 @@ export default function A_Performance() {
             >
               <AnimatedMetric target={m.value} suffix={m.suffix} delay={400 + i * 150} />
             </div>
-            <p className="text-lg text-white/30 mt-4 font-medium">{m.label}</p>
+            <p className="text-base md:text-lg text-white/30 mt-2 md:mt-4 font-medium">{m.label}</p>
           </motion.div>
         ))}
       </div>
@@ -103,7 +103,7 @@ export default function A_Performance() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: EASING, delay: 0.9 }}
-        className="pb-10 overflow-hidden"
+        className="pb-4 md:pb-10 overflow-hidden"
       >
         <div className="flex animate-scroll" style={{ width: 'max-content' }}>
           {[...logos, ...logos, ...logos].map((logo, i) => (
@@ -111,8 +111,8 @@ export default function A_Performance() {
               key={`${logo.name}-${i}`}
               src={logo.src}
               alt={logo.name}
-              className="object-contain flex-shrink-0 mx-6"
-              style={{ filter: 'grayscale(100%) brightness(0) invert(1)', opacity: 0.4, height: 30, width: 120 }}
+              className="object-contain flex-shrink-0 mx-4 md:mx-6 h-6 w-24 md:h-[30px] md:w-[120px]"
+              style={{ filter: 'grayscale(100%) brightness(0) invert(1)', opacity: 0.4 }}
             />
           ))}
         </div>

@@ -9,7 +9,7 @@ export default function A_End() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: EASING, delay: 0.2 }}
-        className="text-7xl md:text-8xl lg:text-9xl font-semibold text-white tracking-tight"
+        className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-semibold text-white tracking-tight"
       >
         Variant
       </motion.h1>
@@ -26,7 +26,7 @@ export default function A_End() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: EASING, delay: 0.8 }}
-        className="text-xl text-white/40 mt-6 font-light"
+        className="text-base md:text-xl text-white/40 mt-4 md:mt-6 font-light"
       >
         AI Personalization Engine for eCommerce
       </motion.p>

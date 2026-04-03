@@ -27,7 +27,7 @@ export default function A01_Hook() {
   return (
     <div className="w-full h-full flex flex-col">
       {/* Main content */}
-      <div className="flex-1 flex items-center px-20">
+      <div className="flex-1 flex items-center px-5 md:px-20">
         {/* Left — headline area */}
         <div className="flex-1">
           <motion.div
@@ -35,8 +35,8 @@ export default function A01_Hook() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: EASING, delay: 0.1 }}
           >
-            <div className="inline-flex items-center backdrop-blur-md bg-bg-card border border-white/10 rounded-full px-5 py-2 shadow-lg mb-8">
-              <span className="text-xs font-semibold text-text-secondary tracking-wider uppercase">AI-Powered CRO</span>
+            <div className="inline-flex items-center backdrop-blur-md bg-bg-card border border-white/10 rounded-full px-4 py-1.5 md:px-5 md:py-2 shadow-lg mb-4 md:mb-8">
+              <span className="text-[10px] md:text-xs font-semibold text-text-secondary tracking-wider uppercase">AI-Powered CRO</span>
             </div>
           </motion.div>
 
@@ -44,7 +44,7 @@ export default function A01_Hook() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASING, delay: 0.2 }}
-            className="text-6xl md:text-7xl lg:text-8xl font-light text-white leading-[1.05] tracking-tight"
+            className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-light text-white leading-[1.05] tracking-tight"
           >
             What if
             <br />
@@ -58,20 +58,20 @@ export default function A01_Hook() {
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 1, ease: EASING, delay: 0.6 }}
-            className="mt-8 h-px w-24 origin-left"
+            className="mt-4 md:mt-8 h-px w-16 md:w-24 origin-left"
             style={{ background: 'linear-gradient(90deg, #3B5BFF, #00D9A3)' }}
           />
         </div>
 
-        {/* Right — Variant wordmark */}
+        {/* Right — Variant wordmark (hidden on mobile) */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: EASING, delay: 0.5 }}
-          className="flex-shrink-0 ml-16"
+          className="hidden md:block flex-shrink-0 ml-16"
         >
           <span
-            className="text-[140px] font-bold tracking-tighter text-white/[0.04] leading-none select-none"
+            className="text-[100px] lg:text-[140px] font-bold tracking-tighter text-white/[0.04] leading-none select-none"
             style={{ writingMode: 'vertical-rl' }}
           >
             Variant
@@ -84,7 +84,7 @@ export default function A01_Hook() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: EASING, delay: 0.9 }}
-        className="pb-10 overflow-hidden"
+        className="pb-4 md:pb-10 overflow-hidden"
       >
         <div className="flex animate-scroll" style={{ width: 'max-content' }}>
           {[...logos, ...logos, ...logos].map((logo, i) => (
@@ -92,8 +92,8 @@ export default function A01_Hook() {
               key={`${logo.name}-${i}`}
               src={logo.src}
               alt={logo.name}
-              className="object-contain flex-shrink-0 mx-6"
-              style={{ filter: 'grayscale(100%) brightness(0) invert(1)', opacity: 0.4, height: 30, width: 120 }}
+              className="object-contain flex-shrink-0 mx-3 md:mx-6 h-4 w-16 md:h-[30px] md:w-[120px]"
+              style={{ filter: 'grayscale(100%) brightness(0) invert(1)', opacity: 0.4 }}
             />
           ))}
         </div>

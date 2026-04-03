@@ -11,7 +11,7 @@ import A_End from './A_End'
 export const slides = [
   A00_Title,
   A01_Hook,
-  A02_Question,
+  // A02_Question,
   A03_WhatWeDo,
   A03_HowItWorks,
   S_ProductDemo_v2,

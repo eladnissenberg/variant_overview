@@ -1,6 +1,6 @@
 export function SlideProgress({ current, total }) {
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-1.5">
+    <div className="fixed bottom-3 right-3 md:bottom-6 md:right-6 z-50 flex items-center gap-1.5">
       {Array.from({ length: total }, (_, i) => (
         <div
           key={i}
