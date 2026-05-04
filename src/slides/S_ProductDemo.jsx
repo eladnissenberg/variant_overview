@@ -7,7 +7,6 @@ const EASING = [0.22, 1, 0.36, 1]
 const brands = [
   {
     name: 'Therabody',
-    color: '#DDD3F0',
     images: [
       '/images/therabody-variantB.png',
       '/images/therabody-variantA.png',
@@ -26,7 +25,6 @@ const brands = [
   },
   {
     name: 'Terra Kaffe',
-    color: '#5B7AFF',
     images: [
       '/images/terrakaffe-original.png',
       '/images/terrakaffe-variantA.png',
@@ -45,7 +43,6 @@ const brands = [
   },
   {
     name: 'DermStreet',
-    color: '#00D9A3',
     images: [
       '/images/dermstreet-v1.png',
       '/images/dermstreet-v2.png',
@@ -73,10 +70,10 @@ function MetricBar({ label, value, color, delay }) {
       className="space-y-1"
     >
       <div className="flex justify-between">
-        <span className="text-xs text-white/35">{label}</span>
-        <span className="text-xs font-semibold text-white/50">{value}%</span>
+        <span className="text-xs text-cream/40">{label}</span>
+        <span className="text-xs font-semibold text-cream/70">{value}%</span>
       </div>
-      <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
+      <div className="h-1.5 rounded-full bg-cream/[0.05] overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${value}%` }}
@@ -127,21 +124,21 @@ function GainDistribution({ medianUplift, delay }) {
       className="space-y-1"
     >
       <div className="flex justify-between">
-        <span className="text-xs text-white/35">Estimated CVR Uplift</span>
-        <span className="text-xs font-semibold text-white/50">+{medianUplift}% median</span>
+        <span className="text-xs text-cream/40">Estimated CVR Uplift</span>
+        <span className="text-xs font-semibold text-cream/70">+{medianUplift}% median</span>
       </div>
       <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="w-full">
-        <motion.path d={areaPath} fill="url(#distGrad)" initial={{ opacity: 0 }} animate={{ opacity: 0.4 }} transition={{ duration: 0.8, delay: delay + 0.3 }} />
-        <motion.path d={linePath} fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, ease: EASING, delay: delay + 0.2 }} />
-        <line x1={zeroSvgX} y1="4" x2={zeroSvgX} y2={h - 14} stroke="rgba(255,255,255,0.1)" strokeWidth="0.5" strokeDasharray="2 2" />
-        <motion.line x1={medianSvgX} y1="4" x2={medianSvgX} y2={h - 14} stroke="rgba(255,255,255,0.3)" strokeWidth="1" strokeDasharray="3 3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: delay + 0.6, duration: 0.3 }} />
-        <line x1="0" y1={h - 14} x2={w} y2={h - 14} stroke="rgba(255,255,255,0.06)" strokeWidth="0.5" />
-        <motion.text x={medianSvgX} y={h - 2} textAnchor="middle" fill="rgba(255,255,255,0.4)" fontSize="9" fontWeight="600" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: delay + 0.8, duration: 0.3 }}>+{medianUplift}%</motion.text>
-        <text x={zeroSvgX} y={h - 2} textAnchor="middle" fill="rgba(255,255,255,0.15)" fontSize="8">0%</text>
+        <motion.path d={areaPath} fill="url(#distGrad)" initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} transition={{ duration: 0.8, delay: delay + 0.3 }} />
+        <motion.path d={linePath} fill="none" stroke="rgba(250,250,242,0.4)" strokeWidth="1.5" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, ease: EASING, delay: delay + 0.2 }} />
+        <line x1={zeroSvgX} y1="4" x2={zeroSvgX} y2={h - 14} stroke="rgba(250,250,242,0.1)" strokeWidth="0.5" strokeDasharray="2 2" />
+        <motion.line x1={medianSvgX} y1="4" x2={medianSvgX} y2={h - 14} stroke="#0F9568" strokeOpacity="0.8" strokeWidth="1" strokeDasharray="3 3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: delay + 0.6, duration: 0.3 }} />
+        <line x1="0" y1={h - 14} x2={w} y2={h - 14} stroke="rgba(250,250,242,0.06)" strokeWidth="0.5" />
+        <motion.text x={medianSvgX} y={h - 2} textAnchor="middle" fill="#0F9568" fontSize="9" fontWeight="600" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: delay + 0.8, duration: 0.3 }}>+{medianUplift}%</motion.text>
+        <text x={zeroSvgX} y={h - 2} textAnchor="middle" fill="rgba(250,250,242,0.2)" fontSize="8">0%</text>
         <defs>
           <linearGradient id="distGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="white" stopOpacity="0.08" />
-            <stop offset="100%" stopColor="white" stopOpacity="0" />
+            <stop offset="0%" stopColor="#0F9568" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="#0F9568" stopOpacity="0" />
           </linearGradient>
         </defs>
       </svg>
@@ -149,47 +146,46 @@ function GainDistribution({ medianUplift, delay }) {
   )
 }
 
-function HypothesisCard({ hypothesis, color, metrics }) {
+function HypothesisCard({ hypothesis, metrics }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, ease: EASING, delay: 0.5 }}
-      className="w-full md:w-[320px] flex-shrink-0 rounded-2xl p-4 md:p-6 flex flex-col gap-3 md:gap-5 md:self-stretch"
+      className="w-full md:w-[320px] flex-shrink-0 rounded p-4 md:p-6 flex flex-col gap-3 md:gap-5 md:self-stretch"
       style={{
-        background: 'rgba(26,26,38,0.7)',
-        border: '1px solid rgba(255,255,255,0.08)',
-        backdropFilter: 'blur(16px)',
+        background: 'rgba(15, 149, 104, 0.08)',
+        border: '1px solid #0F9568',
+        boxShadow: 'inset 0 0 0 3px #061D15',
       }}
     >
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <div className="w-1.5 h-1.5 rounded-full" style={{ background: color, opacity: 0.6 }} />
-          <span className="text-xs font-semibold uppercase tracking-[0.15em] text-white/30">Data Trigger</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald/70" />
+          <span className="text-xs font-semibold uppercase tracking-[0.15em] text-cream/40">Data Trigger</span>
         </div>
-        <p className="text-sm md:text-base text-white/50 leading-relaxed">{hypothesis.trigger}</p>
+        <p className="text-sm md:text-base text-cream/60 leading-relaxed">{hypothesis.trigger}</p>
       </div>
 
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-yellow-400/60" />
-          <span className="text-xs font-semibold uppercase tracking-[0.15em] text-white/30">Insight</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald/70" />
+          <span className="text-xs font-semibold uppercase tracking-[0.15em] text-cream/40">Insight</span>
         </div>
-        <p className="text-sm md:text-base text-white/60 leading-relaxed font-medium">{hypothesis.insight}</p>
+        <p className="text-sm md:text-base text-cream/80 leading-relaxed font-medium">{hypothesis.insight}</p>
       </div>
 
-      <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '12px' }}>
+      <div style={{ borderTop: '1px solid rgba(250,250,242,0.06)', paddingTop: '12px' }}>
         <div className="flex items-center gap-2 mb-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-teal-bright/60" />
-          <span className="text-xs font-semibold uppercase tracking-[0.15em] text-white/30">Hypothesis</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald/70" />
+          <span className="text-xs font-semibold uppercase tracking-[0.15em] text-cream/40">Hypothesis</span>
         </div>
-        <p className="text-sm md:text-base text-white/50 leading-relaxed">{hypothesis.action}</p>
+        <p className="text-sm md:text-base text-cream/60 leading-relaxed">{hypothesis.action}</p>
       </div>
 
-      {/* Metric bars — hidden on mobile to save space */}
-      <div className="hidden md:block space-y-6 mt-auto" style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '16px' }}>
-        <MetricBar label="Probability of Success" value={metrics.probability} color="rgba(255,255,255,0.35)" delay={0.7} />
-        <MetricBar label="Traffic Affected" value={metrics.traffic} color="rgba(255,255,255,0.25)" delay={0.85} />
+      <div className="hidden md:block space-y-6 mt-auto" style={{ borderTop: '1px solid rgba(250,250,242,0.06)', paddingTop: '16px' }}>
+        <MetricBar label="Probability of Success" value={metrics.probability} color="rgba(15,149,104,0.7)" delay={0.7} />
+        <MetricBar label="Traffic Affected" value={metrics.traffic} color="rgba(15,149,104,0.45)" delay={0.85} />
         <GainDistribution medianUplift={metrics.medianUplift} delay={1.0} />
       </div>
     </motion.div>
@@ -213,10 +209,10 @@ function PhoneSetDesktop({ images }) {
           animate={{ opacity: 1, x: -(PHONE_W + GAP), scale: 1 }}
           transition={{ duration: 0.9, ease: EASING, delay: 0.4 }}
         >
-          <div className="rounded-[24px] overflow-hidden border border-white/10 shadow-2xl" style={{ width: PHONE_W, height: PHONE_H, background: '#1A1A26' }}>
+          <div className="rounded-[20px] overflow-hidden border border-cream/10 shadow-2xl" style={{ width: PHONE_W, height: PHONE_H, background: '#061D15' }}>
             <img src={images[1]} alt="Version 0" className="w-full h-full object-cover object-top" />
           </div>
-          <span className="text-sm font-medium tracking-wider text-white/80">Version 0</span>
+          <span className="text-sm font-medium tracking-wider text-cream/70">Version 0</span>
         </motion.div>
       )}
       <motion.div
@@ -225,10 +221,10 @@ function PhoneSetDesktop({ images }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: EASING }}
       >
-        <div className="rounded-[24px] overflow-hidden border border-white/10 shadow-2xl" style={{ width: PHONE_W, height: PHONE_H, background: '#1A1A26' }}>
+        <div className="rounded-[20px] overflow-hidden border border-cream/15 shadow-2xl" style={{ width: PHONE_W, height: PHONE_H, background: '#061D15' }}>
           <img src={images[0]} alt="Version 1" className="w-full h-full object-cover object-top" />
         </div>
-        <span className="text-sm font-medium tracking-wider text-white/80">{hasVariants ? 'Version 1' : 'Live Experience'}</span>
+        <span className="text-sm font-medium tracking-wider text-cream/85">{hasVariants ? 'Version 1' : 'Live Experience'}</span>
       </motion.div>
       {hasVariants && (
         <motion.div
@@ -237,20 +233,19 @@ function PhoneSetDesktop({ images }) {
           animate={{ opacity: 1, x: (PHONE_W + GAP), scale: 1 }}
           transition={{ duration: 0.9, ease: EASING, delay: 0.4 }}
         >
-          <div className="rounded-[24px] overflow-hidden border border-white/10 shadow-2xl" style={{ width: PHONE_W, height: PHONE_H, background: '#1A1A26' }}>
+          <div className="rounded-[20px] overflow-hidden border border-cream/10 shadow-2xl" style={{ width: PHONE_W, height: PHONE_H, background: '#061D15' }}>
             <img src={hasThree ? images[2] : images[1]} alt="Version 2" className="w-full h-full object-cover object-top" />
           </div>
-          <span className="text-sm font-medium tracking-wider text-white/80">Version 2</span>
+          <span className="text-sm font-medium tracking-wider text-cream/70">Version 2</span>
         </motion.div>
       )}
     </div>
   )
 }
 
-/* Mobile: Horizontal scroll carousel with snap */
+/* Mobile: horizontal scroll carousel */
 function PhoneSetMobile({ images, viewportWidth, hypothesis }) {
   const [activePhone, setActivePhone] = useState(0)
-  const scrollRef = useState(null)
   const phoneW = Math.min(viewportWidth - 64, 200)
   const phoneH = phoneW * 1.8
 
@@ -268,7 +263,6 @@ function PhoneSetMobile({ images, viewportWidth, hypothesis }) {
 
   return (
     <div className="flex flex-col items-center gap-1 w-full">
-      {/* Scrollable phone strip */}
       <div
         data-phone-scroll
         className="w-full overflow-x-auto flex gap-3 snap-x snap-mandatory pb-2"
@@ -286,8 +280,8 @@ function PhoneSetMobile({ images, viewportWidth, hypothesis }) {
             onClick={(e) => e.stopPropagation()}
           >
             <div
-              className="rounded-[16px] overflow-hidden border border-white/10 shadow-xl"
-              style={{ width: phoneW, height: phoneH, background: '#1A1A26' }}
+              className="rounded-[14px] overflow-hidden border border-cream/10 shadow-xl"
+              style={{ width: phoneW, height: phoneH, background: '#061D15' }}
             >
               <img
                 src={images[imgIdx]}
@@ -295,12 +289,11 @@ function PhoneSetMobile({ images, viewportWidth, hypothesis }) {
                 className="w-full h-full object-cover object-top"
               />
             </div>
-            <span className="text-[10px] font-medium tracking-wider text-white/50">{labels[i]}</span>
+            <span className="text-[10px] font-medium tracking-wider text-cream/60">{labels[i]}</span>
           </div>
         ))}
       </div>
 
-      {/* Dots */}
       {images.length > 1 && (
         <div className="flex gap-1.5">
           {labels.map((_, i) => (
@@ -308,17 +301,16 @@ function PhoneSetMobile({ images, viewportWidth, hypothesis }) {
               key={i}
               className="w-1.5 h-1.5 rounded-full transition-all duration-300"
               style={{
-                background: i === activePhone ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.15)',
+                background: i === activePhone ? 'rgba(250,250,242,0.7)' : 'rgba(250,250,242,0.18)',
               }}
             />
           ))}
         </div>
       )}
 
-      {/* Concise hypothesis one-liner */}
-      <div className="mt-2 rounded-lg px-3 py-1.5 w-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
-        <p className="text-[10px] text-white/45 text-center leading-snug line-clamp-2">
-          <span className="text-white/60 font-medium">Trigger:</span> {hypothesis.insight}
+      <div className="mt-2 rounded px-3 py-1.5 w-full overflow-hidden" style={{ background: 'rgba(250,250,242,0.04)', border: '1px solid rgba(250,250,242,0.08)' }}>
+        <p className="text-[10px] text-cream/55 text-center leading-snug line-clamp-2">
+          <span className="text-cream/75 font-medium">Trigger:</span> {hypothesis.insight}
         </p>
       </div>
     </div>
@@ -338,7 +330,6 @@ export default function S_ProductDemo() {
           e.stopPropagation()
           setActiveIdx((prev) => prev + 1)
         }
-        // On last brand, don't intercept — let slide navigation handle it
       }
     }
     window.addEventListener('keydown', handleKeyDown, true)
@@ -347,39 +338,35 @@ export default function S_ProductDemo() {
 
   return (
     <div
-      className="w-full h-full relative flex flex-col px-4 py-4 md:px-12 md:py-8"
+      className="w-full h-full relative flex flex-col px-6 py-4 md:px-12 md:py-8"
       onClick={(e) => {
-        // Cycle through brands on click, but not when scrolling phones
         if (!e.target.closest('button') && !e.target.closest('[data-phone-scroll]')) {
           e.stopPropagation()
           setActiveIdx((prev) => (prev + 1) % brands.length)
         }
       }}
     >
-      <span className="hidden md:block absolute md:top-8 md:right-10 text-base font-semibold tracking-tight text-white/20 z-20">Variant</span>
-      {/* Title */}
+      <span className="hidden md:block absolute md:top-8 md:right-10 text-base font-semibold tracking-tight text-cream/20 z-20">Variant</span>
+
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: EASING, delay: 0.1 }}
-        className="text-lg sm:text-xl md:text-4xl lg:text-5xl font-semibold text-white text-left leading-tight mb-2 md:mb-2"
+        className="text-lg sm:text-xl md:text-4xl lg:text-5xl font-semibold text-cream tracking-tight leading-tight mb-2 md:mb-2"
       >
         Launch brand-aligned experiments{' '}
-        <span className="font-instrument italic font-normal tracking-normal text-lavender">
-          in a click.
-        </span>
+        <span className="text-emerald">in a click.</span>
       </motion.h2>
 
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.25 }}
-        className="hidden md:block text-2xl text-text-secondary/40 mb-3"
+        className="hidden md:block text-2xl text-cream/50 mb-3"
       >
         Variant identifies and builds high-impact experiments — ready to launch in one click
       </motion.p>
 
-      {/* Toggle buttons — desktop only (mobile buttons are inside content area) */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -390,11 +377,11 @@ export default function S_ProductDemo() {
           <button
             key={b.name}
             onClick={(e) => { e.stopPropagation(); setActiveIdx(i) }}
-            className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
+            className="px-4 py-2 rounded text-sm font-medium transition-all duration-300"
             style={{
-              background: activeIdx === i ? `${b.color}12` : 'rgba(255,255,255,0.02)',
-              border: `1px solid ${activeIdx === i ? `${b.color}30` : 'rgba(255,255,255,0.06)'}`,
-              color: activeIdx === i ? b.color : 'rgba(255,255,255,0.3)',
+              background: activeIdx === i ? 'rgba(15, 149, 104, 0.12)' : 'rgba(250, 250, 242, 0.04)',
+              border: `1px solid ${activeIdx === i ? '#0F9568' : 'rgba(250, 250, 242, 0.08)'}`,
+              color: activeIdx === i ? '#FAFAF2' : 'rgba(250, 250, 242, 0.4)',
             }}
           >
             {b.name}
@@ -402,19 +389,17 @@ export default function S_ProductDemo() {
         ))}
       </motion.div>
 
-      {/* Content: Hypothesis card + Phone display */}
       <div className="flex-1 flex flex-col items-center min-h-0">
-        {/* Toggle buttons — mobile only, directly above images */}
         <div className="flex md:hidden flex-wrap gap-1.5 mb-2 justify-center">
           {brands.map((b, i) => (
             <button
               key={b.name}
               onClick={(e) => { e.stopPropagation(); setActiveIdx(i) }}
-              className="px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300"
+              className="px-3 py-1.5 rounded text-xs font-medium transition-all duration-300"
               style={{
-                background: activeIdx === i ? `${b.color}12` : 'rgba(255,255,255,0.02)',
-                border: `1px solid ${activeIdx === i ? `${b.color}30` : 'rgba(255,255,255,0.06)'}`,
-                color: activeIdx === i ? b.color : 'rgba(255,255,255,0.3)',
+                background: activeIdx === i ? 'rgba(15, 149, 104, 0.12)' : 'rgba(250, 250, 242, 0.04)',
+                border: `1px solid ${activeIdx === i ? '#0F9568' : 'rgba(250, 250, 242, 0.08)'}`,
+                color: activeIdx === i ? '#FAFAF2' : 'rgba(250, 250, 242, 0.4)',
               }}
             >
               {b.name}
@@ -430,7 +415,7 @@ export default function S_ProductDemo() {
             transition={{ duration: 0.4 }}
             className="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full h-full"
           >
-            {!isMobile && <HypothesisCard hypothesis={active.hypothesis} color={active.color} metrics={active.metrics} />}
+            {!isMobile && <HypothesisCard hypothesis={active.hypothesis} metrics={active.metrics} />}
             <div className="flex-1 flex items-center justify-center">
               {isMobile ? (
                 <PhoneSetMobile images={active.images} viewportWidth={width} hypothesis={active.hypothesis} />

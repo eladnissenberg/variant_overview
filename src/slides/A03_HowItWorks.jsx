@@ -7,9 +7,6 @@ const phases = [
   {
     label: 'AGENTIC ANALYST',
     subtitle: 'Finds what to fix',
-    color: '#DDD3F0',
-    borderColor: 'rgba(221,211,240,0.18)',
-    bgColor: 'rgba(221,211,240,0.03)',
     steps: [
       { num: '1', title: 'Data Ingestion', desc: 'Connects to your site and analytics — behavior, traffic, intent' },
       { num: '2', title: 'Segmentation', desc: 'Clusters visitors into meaningful segments in real time' },
@@ -19,9 +16,6 @@ const phases = [
   {
     label: 'AGENTIC DEV',
     subtitle: 'Builds and ships it',
-    color: '#5B7AFF',
-    borderColor: 'rgba(59,91,255,0.18)',
-    bgColor: 'rgba(59,91,255,0.03)',
     steps: [
       { num: '4', title: 'Experiment Generation', desc: 'Creates brand-aligned variants — copy, layout, design, pricing' },
       { num: '5', title: 'Deployment', desc: 'One-click launch with allocation, rendering, and tracking' },
@@ -30,9 +24,6 @@ const phases = [
   {
     label: 'INTELLIGENCE LAYER',
     subtitle: 'Learns and compounds',
-    color: '#00D9A3',
-    borderColor: 'rgba(0,217,163,0.18)',
-    bgColor: 'rgba(0,217,163,0.03)',
     steps: [
       { num: '6', title: 'Measurement', desc: 'Tracks conversion and revenue — attributes results to changes' },
       { num: '7', title: 'Compounding', desc: 'Builds memory of what works per segment, improves over time' },
@@ -51,17 +42,14 @@ function PhaseCard({ phase, index }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: EASING, delay: baseDelay }}
-        className="w-full h-full rounded-2xl p-6 flex flex-col relative overflow-hidden"
-        style={{ background: phase.bgColor, border: `1px solid ${phase.borderColor}` }}
+        className="w-full h-full rounded p-6 flex flex-col relative overflow-hidden"
+        style={{
+          background: 'rgba(15, 149, 104, 0.08)',
+          border: '1px solid #0F9568',
+          boxShadow: 'inset 0 0 0 3px #061D15',
+        }}
       >
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: `linear-gradient(90deg, transparent, ${phase.color}30, transparent)` }}
-        />
-        <span
-          className="text-lg font-semibold uppercase tracking-[0.2em] mb-5"
-          style={{ color: phase.color, opacity: 0.5 }}
-        >
+        <span className="text-lg font-semibold uppercase tracking-[0.2em] text-cream/70 mb-5">
           {phase.label}
         </span>
         <div className="space-y-6 flex-1">
@@ -74,14 +62,14 @@ function PhaseCard({ phase, index }) {
               className="flex gap-3"
             >
               <div
-                className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 mt-1"
-                style={{ background: `${phase.color}10`, color: phase.color, border: `1px solid ${phase.color}20` }}
+                className="w-10 h-10 rounded flex items-center justify-center text-lg font-bold flex-shrink-0 mt-1 bg-emerald text-cream"
+                style={{ boxShadow: 'inset 0 0 0 1px rgba(250, 250, 242, 0.32)' }}
               >
                 {step.num}
               </div>
               <div>
-                <h4 className="text-2xl font-semibold text-white/90 leading-snug">{step.title}</h4>
-                <p className="text-xl text-text-secondary/40 leading-relaxed mt-1">{step.desc}</p>
+                <h4 className="text-2xl font-semibold text-cream/90 leading-snug">{step.title}</h4>
+                <p className="text-xl text-cream/40 leading-relaxed mt-1">{step.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -100,8 +88,20 @@ function ConnectorArrow({ delay }) {
       className="flex items-center flex-shrink-0 mx-1 self-center mt-10"
     >
       <svg width="32" height="12" viewBox="0 0 32 12" fill="none">
-        <motion.line x1="0" y1="6" x2="22" y2="6" stroke="white" strokeOpacity="0.1" strokeWidth="1" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6, ease: EASING, delay }} />
-        <motion.path d="M22 2 L30 6 L22 10" stroke="white" strokeOpacity="0.15" strokeWidth="1" fill="none" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: delay + 0.3, duration: 0.3 }} />
+        <motion.line
+          x1="0" y1="6" x2="22" y2="6"
+          stroke="#0F9568" strokeOpacity="0.6" strokeWidth="1"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 0.6, ease: EASING, delay }}
+        />
+        <motion.path
+          d="M22 2 L30 6 L22 10"
+          stroke="#0F9568" strokeOpacity="0.7" strokeWidth="1" fill="none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: delay + 0.3, duration: 0.3 }}
+        />
       </svg>
     </motion.div>
   )
@@ -119,7 +119,7 @@ function DesktopLayout() {
   )
 }
 
-/* ─── Mobile: Clean vertical timeline ─── */
+/* ─── Mobile: vertical timeline ─── */
 
 function MobileLayout() {
   let stepIndex = 0
@@ -127,45 +127,37 @@ function MobileLayout() {
   return (
     <div className="flex-1 flex items-center overflow-y-auto" style={{ scrollbarWidth: 'none' }}>
       <div className="relative pl-8">
-        {/* Vertical timeline line */}
         <motion.div
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ duration: 1.2, ease: EASING, delay: 0.3 }}
-          className="absolute left-[11px] top-0 bottom-0 w-px origin-top"
-          style={{ background: 'linear-gradient(180deg, #DDD3F0 0%, #5B7AFF 45%, #00D9A3 100%)', opacity: 0.15 }}
+          className="absolute left-[11px] top-0 bottom-0 w-px origin-top bg-emerald/30"
         />
 
         {phases.map((phase, pi) => {
           const phaseDelay = 0.3 + pi * 0.25
           return (
             <div key={phase.label} className="mb-8 last:mb-0">
-              {/* Phase header */}
               <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, ease: EASING, delay: phaseDelay }}
                 className="flex items-center gap-3 mb-4"
               >
-                {/* Timeline dot */}
                 <div
-                  className="absolute left-0 w-[23px] h-[23px] rounded-full flex items-center justify-center"
-                  style={{ background: `${phase.color}15`, border: `2px solid ${phase.color}30` }}
+                  className="absolute left-0 w-[23px] h-[23px] rounded flex items-center justify-center bg-emerald"
+                  style={{ boxShadow: 'inset 0 0 0 1px rgba(250, 250, 242, 0.32)' }}
                 >
-                  <div className="w-2 h-2 rounded-full" style={{ background: phase.color, opacity: 0.6 }} />
+                  <div className="w-1.5 h-1.5 rounded-full bg-cream/70" />
                 </div>
                 <div>
-                  <span
-                    className="text-xs font-semibold uppercase tracking-[0.15em]"
-                    style={{ color: phase.color, opacity: 0.7 }}
-                  >
+                  <span className="text-xs font-semibold uppercase tracking-[0.15em] text-cream/70">
                     {phase.label}
                   </span>
-                  <p className="text-[13px] text-white/30 mt-0.5">{phase.subtitle}</p>
+                  <p className="text-[13px] text-cream/30 mt-0.5">{phase.subtitle}</p>
                 </div>
               </motion.div>
 
-              {/* Steps */}
               <div className="space-y-3 ml-1">
                 {phase.steps.map((step) => {
                   const delay = phaseDelay + 0.15 + stepIndex * 0.08
@@ -178,8 +170,8 @@ function MobileLayout() {
                       transition={{ duration: 0.35, ease: EASING, delay }}
                       className="flex items-center gap-2 py-1"
                     >
-                      <span className="text-[11px] font-bold w-4 text-center" style={{ color: phase.color, opacity: 0.4 }}>{step.num}</span>
-                      <h4 className="text-[15px] font-medium text-white/70">{step.title}</h4>
+                      <span className="text-[11px] font-bold w-4 text-center text-emerald/60">{step.num}</span>
+                      <h4 className="text-[15px] font-medium text-cream/70">{step.title}</h4>
                     </motion.div>
                   )
                 })}
@@ -198,27 +190,24 @@ export default function A03_HowItWorks() {
   const { isMobile } = useViewport()
 
   return (
-    <div className="w-full h-full relative flex flex-col px-4 py-4 md:px-16 md:py-12">
-      <span className="hidden md:block absolute md:top-8 md:right-10 text-base font-semibold tracking-tight text-white/20 z-20">Variant</span>
+    <div className="w-full h-full relative flex flex-col px-6 py-4 md:px-16 md:py-12">
+      <span className="hidden md:block absolute md:top-8 md:right-10 text-base font-semibold tracking-tight text-cream/20 z-20">Variant</span>
 
-      {/* Header */}
       <div className="mb-4 md:mb-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: EASING, delay: 0.1 }}
-          className="text-2xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight"
+          className="text-2xl md:text-4xl lg:text-5xl font-semibold text-cream tracking-tight leading-tight"
         >
           How it{' '}
-          <span className="font-instrument italic font-normal tracking-normal text-lavender">
-            works.
-          </span>
+          <span className="text-emerald">works.</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-sm md:text-2xl text-text-secondary/40 mt-1 md:mt-3"
+          className="text-sm md:text-2xl text-cream/40 mt-1 md:mt-3"
         >
           An end-to-end system that replaces manual CRO workflows
         </motion.p>

@@ -4,26 +4,23 @@
 
 @layer base {
   :root {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 
-    /* Glass Morphism */
-    --glass-bg: rgba(26, 26, 38, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-border-light: rgba(255, 255, 255, 0.15);
+    --forest: #061D15;
+    --emerald: #0F9568;
+    --emerald-deep: #0E865E;
+    --cream: #FAFAF2;
+    --muted: #54645C;
 
-    /* Gradient mesh */
-    --gradient-mesh:
-      radial-gradient(at 27% 37%, rgba(59, 91, 255, 0.12) 0px, transparent 50%),
-      radial-gradient(at 97% 21%, rgba(0, 217, 163, 0.08) 0px, transparent 50%),
-      radial-gradient(at 52% 99%, rgba(59, 91, 255, 0.15) 0px, transparent 50%),
-      radial-gradient(at 10% 29%, rgba(0, 217, 163, 0.1) 0px, transparent 50%),
-      radial-gradient(at 79% 53%, rgba(0, 217, 163, 0.12) 0px, transparent 50%);
+    --rule: rgba(250, 250, 242, 0.32);
+    --hairline: rgba(250, 250, 242, 0.08);
 
-    /* Gradient text */
-    --gradient-blue-teal: linear-gradient(135deg, #3B5BFF 0%, #00D9A3 100%);
+    --card-bg: rgba(15, 149, 104, 0.08);
+    --card-border: #0F9568;
+    --card-inset: inset 0 0 0 3px #061D15;
   }
 
   * {
@@ -36,12 +33,12 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #0A0A0F;
-    color: #F8F9FA;
+    background: #061D15;
+    color: #FAFAF2;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Manrope', system-ui, sans-serif;
     font-weight: 600;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -50,19 +47,10 @@
 
 @layer utilities {
   .glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border-light);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-  }
-
-  .gradient-text {
-    background: var(--gradient-blue-teal);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    box-shadow: var(--card-inset);
   }
 
   .animate-scroll {

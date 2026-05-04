@@ -35,7 +35,7 @@ export function EmailGate({ onAccess }) {
   }
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center" style={{ background: '#0A0A0F' }}>
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center" style={{ background: '#061D15' }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
