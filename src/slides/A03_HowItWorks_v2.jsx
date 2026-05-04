@@ -400,9 +400,9 @@ function HeroPanel({ isMobile }) {
       transition={{ duration: 0.7, delay: 0.55, ease: EASING }}
       className="rounded-md flex flex-col justify-between h-full p-5 md:p-6 relative overflow-hidden"
       style={{
-        background: GREEN,
+        background: '#0F9568',
         color: '#06120D',
-        boxShadow: `0 0 60px ${GREEN}25`,
+        boxShadow: '0 0 60px #0F956825',
       }}
     >
       {/* Subtle pixel pattern at top — bleeds in from grid neighbors */}
