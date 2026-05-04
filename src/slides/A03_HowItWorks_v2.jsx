@@ -40,34 +40,36 @@ function MemoryGrid({ isMobile }) {
   ]
 
   return (
-    <div
-      className="grid w-full h-full"
-      style={{
-        gridTemplateColumns: `repeat(${cols}, 1fr)`,
-        gridTemplateRows: `repeat(${rows}, 1fr)`,
-        gap: '3px',
-      }}
-    >
-      {cells.map((tier, i) => {
-        const s = tierStyles[tier]
-        return (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: 0.3,
-              delay: 0.55 + i * 0.005,
-              ease: EASING,
-            }}
-            style={{
-              background: s.bg,
-              boxShadow: s.shadow,
-              borderRadius: 2,
-            }}
-          />
-        )
-      })}
+    <div className="w-full h-full py-3">
+      <div
+        className="grid w-full h-full"
+        style={{
+          gridTemplateColumns: `repeat(${cols}, 1fr)`,
+          gridTemplateRows: `repeat(${rows}, 1fr)`,
+          gap: '3px',
+        }}
+      >
+        {cells.map((tier, i) => {
+          const s = tierStyles[tier]
+          return (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.3,
+                delay: 0.55 + i * 0.005,
+                ease: EASING,
+              }}
+              style={{
+                background: s.bg,
+                boxShadow: s.shadow,
+                borderRadius: 2,
+              }}
+            />
+          )
+        })}
+      </div>
     </div>
   )
 }
@@ -83,26 +85,28 @@ function PixelGrid({ seed = 1, density = 0.18, cols = 14, rows = 16 }) {
   })
 
   return (
-    <div
-      className="grid gap-[2px] w-full h-full"
-      style={{
-        gridTemplateColumns: `repeat(${cols}, 1fr)`,
-        gridTemplateRows: `repeat(${rows}, 1fr)`,
-      }}
-    >
-      {cells.map((on, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.25, delay: 0.6 + i * 0.003, ease: EASING }}
-          style={{
-            background:
-              on === 2 ? GREEN : on === 1 ? `${GREEN}40` : 'rgba(255,255,255,0.025)',
-            borderRadius: 1,
-          }}
-        />
-      ))}
+    <div className="w-full h-full py-3">
+      <div
+        className="grid gap-[2px] w-full h-full"
+        style={{
+          gridTemplateColumns: `repeat(${cols}, 1fr)`,
+          gridTemplateRows: `repeat(${rows}, 1fr)`,
+        }}
+      >
+        {cells.map((on, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.25, delay: 0.6 + i * 0.003, ease: EASING }}
+            style={{
+              background:
+                on === 2 ? GREEN : on === 1 ? `${GREEN}40` : 'rgba(255,255,255,0.025)',
+              borderRadius: 1,
+            }}
+          />
+        ))}
+      </div>
     </div>
   )
 }
@@ -144,7 +148,7 @@ function SignalList() {
               className="flex items-center gap-2 min-w-0"
               style={{ height: ROW_HEIGHT }}
             >
-              <span className="text-[13px] text-white/85 leading-none whitespace-nowrap">
+              <span className="text-[17px] text-white/85 leading-none whitespace-nowrap">
                 {s}
               </span>
               <svg
@@ -257,6 +261,9 @@ function FlowArrow({ delay = 0.5 }) {
 
 /* ─── Deployment surface (column 04) — desktop + phone wireframes ─── */
 function DeploymentStack() {
+  // Darker, less-neon emerald for the wireframe (matches the design
+  // system's primary emerald instead of the brighter slide GREEN).
+  const DEPLOY_LINE = '#0F9568'
   return (
     <div className="relative w-full flex items-start justify-center">
       <motion.svg
@@ -268,49 +275,140 @@ function DeploymentStack() {
         style={{ width: '100%', height: 'auto', maxHeight: 200 }}
         fill="none"
       >
-        {/* Desktop browser frame */}
-        <g
-          stroke={GREEN}
-          strokeWidth="1"
-          fill="none"
-          style={{ opacity: 0.9 }}
-        >
+        {/* ═══ Desktop browser ═══ */}
+        <g stroke={DEPLOY_LINE} strokeWidth="1" fill="none">
           {/* Outer frame */}
           <rect x="28" y="18" width="130" height="112" rx="4" />
           {/* Header bar bottom */}
           <line x1="28" y1="32" x2="158" y2="32" />
+
           {/* Traffic lights */}
-          <circle cx="34" cy="25" r="1.5" />
-          <circle cx="40" cy="25" r="1.5" />
-          <circle cx="46" cy="25" r="1.5" />
-          {/* Address bar */}
-          <rect x="62" y="21.5" width="78" height="7" rx="3.5" />
-          {/* Search icon */}
-          <circle cx="135" cy="25" r="1.5" />
-          {/* Two content cards */}
-          <rect x="34" y="42" width="58" height="36" rx="2" />
-          <rect x="98" y="42" width="58" height="36" rx="2" />
-          {/* Text lines below cards */}
-          <line x1="34" y1="86" x2="115" y2="86" strokeWidth="0.7" />
-          <line x1="34" y1="92" x2="92" y2="92" strokeWidth="0.7" />
-          <line x1="34" y1="98" x2="142" y2="98" strokeWidth="0.7" />
-          <line x1="34" y1="104" x2="80" y2="104" strokeWidth="0.7" />
-          <line x1="34" y1="110" x2="120" y2="110" strokeWidth="0.7" />
-          <line x1="34" y1="116" x2="100" y2="116" strokeWidth="0.7" />
-          <line x1="34" y1="122" x2="135" y2="122" strokeWidth="0.7" />
+          <circle cx="34" cy="25" r="1.4" />
+          <circle cx="40" cy="25" r="1.4" />
+          <circle cx="46" cy="25" r="1.4" />
+
+          {/* URL bar */}
+          <rect x="55" y="21.5" width="68" height="7" rx="3.5" strokeWidth="0.85" />
+          {/* Lens icon */}
+          <circle cx="118" cy="25" r="1.2" strokeWidth="0.7" />
+          <line x1="118.8" y1="25.8" x2="120.4" y2="27.4" strokeWidth="0.6" strokeLinecap="round" />
+
+          {/* 3-dot menu */}
+          <circle cx="148" cy="25" r="0.7" fill={DEPLOY_LINE} stroke="none" />
+          <circle cx="151" cy="25" r="0.7" fill={DEPLOY_LINE} stroke="none" />
+          <circle cx="154" cy="25" r="0.7" fill={DEPLOY_LINE} stroke="none" />
+
+          {/* Nav strip */}
+          <line x1="34" y1="38" x2="44" y2="38" strokeWidth="0.6" opacity="0.75" />
+          <line x1="49" y1="38" x2="60" y2="38" strokeWidth="0.6" opacity="0.75" />
+          <line x1="65" y1="38" x2="76" y2="38" strokeWidth="0.6" opacity="0.75" />
+          <line x1="81" y1="38" x2="91" y2="38" strokeWidth="0.6" opacity="0.75" />
+          {/* Active nav indicator */}
+          <line x1="34" y1="40.5" x2="44" y2="40.5" strokeWidth="0.8" />
+
+          {/* Hero product card (left) */}
+          <rect x="34" y="46" width="62" height="46" rx="2" strokeWidth="0.85" />
+          {/* Hero image */}
+          <rect x="38" y="50" width="54" height="22" rx="1" strokeWidth="0.55" opacity="0.7" />
+          {/* Mountain motif inside hero image */}
+          <path
+            d="M 44 67 L 52 56 L 58 62 L 66 53 L 75 67"
+            strokeWidth="0.55"
+            opacity="0.5"
+            strokeLinejoin="round"
+          />
+          <circle cx="84" cy="55" r="1.3" strokeWidth="0.4" opacity="0.5" />
+          {/* Title line */}
+          <line x1="38" y1="76" x2="78" y2="76" strokeWidth="0.7" />
+          {/* Description */}
+          <line x1="38" y1="79.5" x2="68" y2="79.5" strokeWidth="0.5" opacity="0.5" />
+          {/* CTA — filled emerald button (focal point) */}
+          <rect
+            x="38"
+            y="83"
+            width="30"
+            height="6"
+            rx="1.2"
+            fill={DEPLOY_LINE}
+            stroke="none"
+          />
+
+          {/* Side panel (right) — list with checkbox filters */}
+          <line x1="100" y1="50" x2="120" y2="50" strokeWidth="0.7" />
+          {/* Filter rows */}
+          <rect x="100" y="55" width="2.2" height="2.2" rx="0.3" strokeWidth="0.4" opacity="0.7" />
+          <line x1="104.5" y1="56.1" x2="124" y2="56.1" strokeWidth="0.5" opacity="0.7" />
+          <rect x="100" y="61" width="2.2" height="2.2" rx="0.3" strokeWidth="0.4" opacity="0.7" />
+          <line x1="104.5" y1="62.1" x2="120" y2="62.1" strokeWidth="0.5" opacity="0.7" />
+          {/* Selected (filled) */}
+          <rect
+            x="100"
+            y="67"
+            width="2.2"
+            height="2.2"
+            rx="0.3"
+            fill={DEPLOY_LINE}
+            stroke="none"
+          />
+          <line x1="104.5" y1="68.1" x2="126" y2="68.1" strokeWidth="0.55" opacity="0.85" />
+          <rect x="100" y="73" width="2.2" height="2.2" rx="0.3" strokeWidth="0.4" opacity="0.7" />
+          <line x1="104.5" y1="74.1" x2="118" y2="74.1" strokeWidth="0.5" opacity="0.7" />
+
+          {/* Sparkline — conversion uplift trend */}
+          <path
+            d="M 100 88 L 106 85 L 112 86 L 118 82 L 124 84 L 130 79 L 136 81 L 142 76"
+            strokeWidth="0.65"
+            opacity="0.85"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          {/* End-point dot */}
+          <circle cx="142" cy="76" r="1" fill={DEPLOY_LINE} stroke="none" />
+
+          {/* Bottom: 3 product thumbnail cards */}
+          <rect x="34" y="98" width="38" height="22" rx="1.5" strokeWidth="0.6" opacity="0.75" />
+          <rect x="76" y="98" width="38" height="22" rx="1.5" strokeWidth="0.6" opacity="0.75" />
+          <rect x="118" y="98" width="38" height="22" rx="1.5" strokeWidth="0.6" opacity="0.75" />
+          {/* Tiny price tags inside thumbnails */}
+          <rect
+            x="38"
+            y="115"
+            width="10"
+            height="2.5"
+            rx="0.5"
+            fill={DEPLOY_LINE}
+            stroke="none"
+            opacity="0.85"
+          />
+          <rect
+            x="80"
+            y="115"
+            width="10"
+            height="2.5"
+            rx="0.5"
+            fill={DEPLOY_LINE}
+            stroke="none"
+            opacity="0.85"
+          />
+          <rect
+            x="122"
+            y="115"
+            width="10"
+            height="2.5"
+            rx="0.5"
+            fill={DEPLOY_LINE}
+            stroke="none"
+            opacity="0.85"
+          />
+
+          {/* Footer text line */}
+          <line x1="34" y1="125" x2="100" y2="125" strokeWidth="0.45" opacity="0.4" />
         </g>
 
-        {/* Mobile phone — bottom-right, overlapping desktop */}
+        {/* ═══ Mobile phone (bottom-right, overlapping desktop) ═══ */}
         <g>
-          {/* Phone fill — masks desktop content behind */}
-          <rect
-            x="112"
-            y="68"
-            width="44"
-            height="92"
-            rx="7"
-            fill="#131320"
-          />
+          {/* Phone fill — masks desktop behind */}
+          <rect x="112" y="68" width="44" height="92" rx="7" fill="#131320" />
           {/* Phone outline */}
           <rect
             x="112"
@@ -318,40 +416,77 @@ function DeploymentStack() {
             width="44"
             height="92"
             rx="7"
-            stroke={GREEN}
+            stroke={DEPLOY_LINE}
             strokeWidth="1"
             fill="none"
           />
+
+          {/* Status bar */}
+          <line x1="118" y1="73.5" x2="123" y2="73.5" stroke={DEPLOY_LINE} strokeWidth="0.5" opacity="0.7" />
+          {/* Signal dots */}
+          <circle cx="141" cy="73.5" r="0.45" fill={DEPLOY_LINE} stroke="none" opacity="0.7" />
+          <circle cx="143" cy="73.5" r="0.45" fill={DEPLOY_LINE} stroke="none" opacity="0.7" />
+          <circle cx="145" cy="73.5" r="0.45" fill={DEPLOY_LINE} stroke="none" opacity="0.7" />
+          {/* Battery */}
+          <rect x="147.5" y="72.5" width="3.5" height="2" rx="0.3" stroke={DEPLOY_LINE} strokeWidth="0.4" fill="none" opacity="0.7" />
+          <rect x="148" y="73" width="2.2" height="1" fill={DEPLOY_LINE} stroke="none" opacity="0.7" />
+
           {/* Speaker / notch */}
-          <line
-            x1="126"
-            y1="74"
-            x2="142"
-            y2="74"
-            stroke={GREEN}
-            strokeWidth="0.9"
-            strokeLinecap="round"
+          <line x1="128" y1="79" x2="140" y2="79" stroke={DEPLOY_LINE} strokeWidth="0.85" strokeLinecap="round" />
+
+          {/* Hero image */}
+          <rect x="118" y="84" width="32" height="24" rx="1.5" stroke={DEPLOY_LINE} strokeWidth="0.7" fill="none" />
+          {/* Image motif */}
+          <path
+            d="M 122 103 L 128 95 L 132 99 L 138 91 L 146 103"
+            stroke={DEPLOY_LINE}
+            strokeWidth="0.5"
+            opacity="0.55"
+            fill="none"
+            strokeLinejoin="round"
           />
-          {/* Content card */}
+          <circle cx="142" cy="91" r="1.1" stroke={DEPLOY_LINE} strokeWidth="0.4" opacity="0.55" fill="none" />
+
+          {/* Title + description */}
+          <line x1="118" y1="113" x2="146" y2="113" stroke={DEPLOY_LINE} strokeWidth="0.6" />
+          <line x1="118" y1="116.5" x2="138" y2="116.5" stroke={DEPLOY_LINE} strokeWidth="0.5" opacity="0.55" />
+
+          {/* CTA — filled emerald button */}
           <rect
             x="118"
-            y="80"
+            y="121"
             width="32"
-            height="28"
-            rx="2"
-            stroke={GREEN}
-            strokeWidth="0.9"
-            fill="none"
+            height="6"
+            rx="1.2"
+            fill={DEPLOY_LINE}
+            stroke="none"
           />
-          {/* Text lines */}
-          <line x1="118" y1="116" x2="148" y2="116" stroke={GREEN} strokeWidth="0.7" />
-          <line x1="118" y1="122" x2="138" y2="122" stroke={GREEN} strokeWidth="0.7" />
-          <line x1="118" y1="128" x2="146" y2="128" stroke={GREEN} strokeWidth="0.7" />
-          <line x1="118" y1="134" x2="132" y2="134" stroke={GREEN} strokeWidth="0.7" />
-          <line x1="118" y1="140" x2="142" y2="140" stroke={GREEN} strokeWidth="0.7" />
-          <line x1="118" y1="146" x2="125" y2="146" stroke={GREEN} strokeWidth="0.7" />
+
+          {/* Thumbnail row (4 small squares) */}
+          <rect x="118" y="131" width="6.5" height="6.5" rx="0.7" stroke={DEPLOY_LINE} strokeWidth="0.45" fill="none" opacity="0.7" />
+          <rect x="126.5" y="131" width="6.5" height="6.5" rx="0.7" stroke={DEPLOY_LINE} strokeWidth="0.45" fill="none" opacity="0.7" />
+          <rect x="135" y="131" width="6.5" height="6.5" rx="0.7" stroke={DEPLOY_LINE} strokeWidth="0.45" fill="none" opacity="0.7" />
+          <rect x="143.5" y="131" width="6.5" height="6.5" rx="0.7" stroke={DEPLOY_LINE} strokeWidth="0.45" fill="none" opacity="0.7" />
+
+          {/* Bottom nav indicator (4 dots, first active) */}
+          <circle cx="123" cy="148" r="0.85" fill={DEPLOY_LINE} stroke="none" />
+          <circle cx="130" cy="148" r="0.7" fill={DEPLOY_LINE} stroke="none" opacity="0.4" />
+          <circle cx="137" cy="148" r="0.7" fill={DEPLOY_LINE} stroke="none" opacity="0.4" />
+          <circle cx="144" cy="148" r="0.7" fill={DEPLOY_LINE} stroke="none" opacity="0.4" />
+
+          {/* Home indicator bar */}
+          <line x1="128" y1="155" x2="140" y2="155" stroke={DEPLOY_LINE} strokeWidth="0.9" strokeLinecap="round" opacity="0.5" />
         </g>
 
+        {/* "Live deployment" pulsing indicator — top-right of desktop */}
+        <circle cx="143" cy="25" r="1" fill={DEPLOY_LINE} stroke="none">
+          <animate
+            attributeName="opacity"
+            values="0.35;1;0.35"
+            dur="2.2s"
+            repeatCount="indefinite"
+          />
+        </circle>
       </motion.svg>
     </div>
   )
@@ -401,35 +536,27 @@ function HeroPanel({ isMobile }) {
       className="rounded-md flex flex-col justify-between h-full p-5 md:p-6 relative overflow-hidden"
       style={{
         background: '#0F9568',
-        color: '#06120D',
+        color: '#FAFAF2',
         boxShadow: '0 0 60px #0F956825',
       }}
     >
-      {/* Subtle pixel pattern at top — bleeds in from grid neighbors */}
-      <div className="absolute top-0 left-0 right-0 h-[28px] opacity-30 pointer-events-none">
-        <div
-          className="grid gap-[2px] w-full h-full"
-          style={{ gridTemplateColumns: 'repeat(14, 1fr)' }}
-        >
-          {Array.from({ length: 14 * 4 }).map((_, i) => {
-            const r = Math.sin(i * 1.7 + 99) * 1000
-            const v = r - Math.floor(r)
-            return (
-              <div
-                key={i}
-                style={{
-                  background: v < 0.3 ? 'rgba(6,18,13,0.55)' : 'transparent',
-                  borderRadius: 1,
-                }}
-              />
-            )
-          })}
-        </div>
-      </div>
+      {/* Notched corner — diagonal cut in top-right, revealing the
+          forest slide background behind */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: 0,
+          right: 0,
+          width: '22%',
+          aspectRatio: '1 / 1',
+          background: '#061D15',
+          clipPath: 'polygon(0 0, 100% 0, 100% 100%)',
+        }}
+      />
 
       <h3
-        className={`relative font-semibold leading-[1.05] tracking-tight ${
-          isMobile ? 'text-2xl' : 'text-2xl lg:text-[28px]'
+        className={`relative font-bold leading-[1.02] tracking-tight ${
+          isMobile ? 'text-3xl' : 'text-3xl lg:text-[36px]'
         }`}
       >
         Generates
@@ -440,8 +567,8 @@ function HeroPanel({ isMobile }) {
         <br />
         in real time.
       </h3>
-      <p className="relative text-[9px] md:text-[10px] uppercase tracking-[0.22em] font-semibold opacity-55 mt-4">
-        every visitor · personalized · fluidly
+      <p className="relative text-[13px] md:text-[14px] uppercase tracking-[0.22em] font-semibold opacity-75 mt-4">
+        copy · layout · merchandising · flows
       </p>
     </motion.div>
   )
@@ -461,7 +588,7 @@ function Column({ col, index, isMobile, isLast, hideCaption = false }) {
     >
       {/* Number */}
       <span
-        className="text-[10px] font-semibold tracking-[0.2em] mb-1.5"
+        className="text-[13px] font-semibold tracking-[0.2em] mb-1.5"
         style={{ color: GREEN, opacity: 0.65 }}
       >
         {col.num}
@@ -469,7 +596,7 @@ function Column({ col, index, isMobile, isLast, hideCaption = false }) {
 
       {/* Label — green, matches image */}
       <span
-        className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.16em] mb-4 md:mb-5"
+        className="text-[14px] md:text-sm font-semibold uppercase tracking-[0.16em] mb-4 md:mb-5"
         style={{ color: GREEN, opacity: 0.85 }}
       >
         {col.label}
@@ -557,21 +684,15 @@ export default function A03_HowItWorks_v2() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: EASING }}
-          className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white leading-[1.05] tracking-tight"
+          className="text-4xl md:text-6xl lg:text-7xl font-semibold text-white leading-[1.05] tracking-tight"
         >
-          How it{' '}
-          <span
-            className="font-instrument italic font-normal tracking-normal"
-            style={{ color: GREEN }}
-          >
-            works.
-          </span>
+          How it <span style={{ color: GREEN }}>works.</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.25, ease: EASING }}
-          className="text-sm md:text-base text-white/40 mt-2 md:mt-3"
+          className="text-base md:text-xl text-white/40 mt-2 md:mt-3"
         >
           An end-to-end system that replaces manual CRO workflows.
         </motion.p>
@@ -595,8 +716,10 @@ export default function A03_HowItWorks_v2() {
         </div>
       ) : (
         <div className="flex-1 min-h-0 flex flex-col justify-center">
-          {/* Columns — illustrations only (captions moved into loop region) */}
-          <div className="grid grid-cols-5 gap-6 lg:gap-8 flex-shrink-0 h-[340px]">
+          {/* Columns — illustrations only (captions moved into loop region).
+              h-[300px] = ~12% reduction from prior 340px (smaller, but
+              gives the hero panel enough room for the bigger text). */}
+          <div className="grid grid-cols-5 gap-6 lg:gap-8 flex-shrink-0 h-[300px]">
             {columns.map((col, i) => (
               <Column
                 key={col.num}
@@ -617,14 +740,14 @@ export default function A03_HowItWorks_v2() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.0, ease: EASING }}
-            className="mt-3"
+            className="mt-8"
           >
             {/* Captions row */}
             <div className="grid grid-cols-5 gap-6 lg:gap-8 mb-2">
               {columns.map((col) => (
                 <p
                   key={col.num}
-                  className="text-xs md:text-[13px] text-white/40 leading-snug md:px-3"
+                  className="text-sm md:text-[17px] text-white/40 leading-snug md:px-3"
                 >
                   {col.caption || ''}
                 </p>
@@ -647,12 +770,12 @@ export default function A03_HowItWorks_v2() {
               />
 
               <span
-                className="absolute left-1/2 px-4 text-[10px] md:text-[11px] uppercase tracking-[0.3em] font-semibold whitespace-nowrap"
+                className="absolute left-1/2 px-4 text-[13px] md:text-[14px] uppercase tracking-[0.3em] font-semibold whitespace-nowrap"
                 style={{
                   bottom: 0,
                   transform: 'translate(-50%, 50%)',
                   color: GREEN,
-                  background: '#131320',
+                  background: '#061D15',
                   opacity: 0.95,
                 }}
               >
@@ -692,7 +815,7 @@ export default function A03_HowItWorks_v2() {
           On desktop, the centered wrapper above is `flex-1`, which
           fills the middle of the slide and pushes this text to the
           bottom naturally. */}
-      <p className="text-[11px] md:text-xs text-white/35 pt-4 text-left">
+      <p className="text-[14px] md:text-sm text-white/35 pt-4 text-left">
         Every interaction improves future decisions.
       </p>
 
@@ -701,7 +824,7 @@ export default function A03_HowItWorks_v2() {
       {isMobile && (
         <div className="text-center mt-2">
           <span
-            className="text-[10px] uppercase tracking-[0.3em] font-semibold"
+            className="text-[13px] uppercase tracking-[0.3em] font-semibold"
             style={{ color: GREEN, opacity: 0.9 }}
           >
             Continuous Learning Loop
