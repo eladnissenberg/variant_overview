@@ -17,6 +17,7 @@
 
     --rule: rgba(250, 250, 242, 0.32);
     --hairline: rgba(250, 250, 242, 0.08);
+    --grid-line: rgba(250, 250, 242, 0.10);
 
     --card-bg: rgba(15, 149, 104, 0.08);
     --card-border: #0F9568;

@@ -5,8 +5,12 @@ import { SlideProgress } from './components/SlideProgress'
 import { EmailGate } from './components/EmailGate'
 import { useSlideNavigation } from './hooks/useSlideNavigation'
 import { slides } from './slides'
+import Website from './website/Website'
 
-export default function App() {
+const pathname = typeof window !== 'undefined' ? window.location.pathname : '/'
+const isWebsite = pathname === '/site' || pathname.startsWith('/site/')
+
+function DeckApp() {
   const [hasAccess, setHasAccess] = useState(false)
   const { currentSlide, direction, totalSlides } = useSlideNavigation(slides.length)
 
@@ -24,4 +28,9 @@ export default function App() {
       <SlideProgress current={currentSlide} total={totalSlides} />
     </DeckShell>
   )
+}
+
+export default function App() {
+  if (isWebsite) return <Website />
+  return <DeckApp />
 }
