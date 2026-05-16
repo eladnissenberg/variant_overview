@@ -479,7 +479,7 @@ export default function A_Merchandising() {
           transition={{ duration: 0.5, delay: 0.25, ease: EASING }}
           className="text-base md:text-xl text-white/40 mt-2 md:mt-3"
         >
-          Ingests vast volumes of behavioral, contextual, and catalog data — ensuring the optimal results for each person.
+          Variant ranks, groups, and surfaces products in real time — driven by the same engine that designs the rest of the experience.
         </motion.p>
       </div>
 
