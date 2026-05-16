@@ -5,6 +5,7 @@ import A03_WhatWeDo from './A03_WhatWeDo'
 import A03_HowItWorks_v2 from './A03_HowItWorks_v2'
 import S_ProductDemo from './S_ProductDemo'
 import S_ProductDemo_v2 from './S_ProductDemo_v2'
+import A_Merchandising from './A_Merchandising'
 import A_Performance from './A_Performance'
 import A_End from './A_End'
 
@@ -15,6 +16,7 @@ export const slides = [
   // A03_WhatWeDo,
   A03_HowItWorks_v2,
   S_ProductDemo_v2,
+  A_Merchandising,
   S_ProductDemo,
   A_Performance,
   A_End,
